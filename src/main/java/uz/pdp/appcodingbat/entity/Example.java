@@ -10,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"text", "task_id"}))
 public class Example {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +19,8 @@ public class Example {
     @Column(nullable = false)
     private String text;
 
-    @OneToOne
+    @ManyToOne(optional = false)
     private Task task;
+
+    private boolean status;
 }

@@ -25,5 +25,5 @@ public class Answer {
     private User user;
 
     @Column
-    private Boolean isCorrect;
+    private boolean isCorrect;
 }

@@ -3,6 +3,7 @@ package uz.pdp.appcodingbat.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -15,12 +16,14 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column
     private String description;
 
     @ManyToMany
-    private Language language;
+    private Set<Language> language;
+
+    private boolean status;
 }

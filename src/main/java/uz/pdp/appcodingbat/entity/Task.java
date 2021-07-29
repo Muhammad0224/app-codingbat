@@ -10,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "category_id"}))
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,21 +22,23 @@ public class Task {
     @Column
     private String text;
 
-    @Column
+    @Column(nullable = false)
     private String solution;
 
     @Column
     private String hint;
 
-    @Column
+    @Column(nullable = false)
     private String method;
 
     @Column
-    private Boolean hasStar;
+    private boolean hasStar;
 
-    @ManyToMany
+    @ManyToOne(optional = false)
     private Language language;
 
     @ManyToOne(optional = false)
     private Category category;
+
+    private boolean status;
 }
